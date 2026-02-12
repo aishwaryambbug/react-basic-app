@@ -1,32 +1,20 @@
-import { useState, useEffect } from "react";
-import "./App.css";
+import { profiles } from "./data/profiles";
+import ProfileCard from "./component/Profile/ProfileCard";
+import "./index.css";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("theme") === "dark";
-  });
-
-  useEffect(() => {
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
-  }, [darkMode]);
-
   return (
-    <div className={darkMode ? "app dark" : "app"}>
-      <header className="header">
-        <h1>React Functional Components</h1>
-        <button onClick={() => setDarkMode(!darkMode)}>
-          {darkMode ? "Light Mode ☀️" : "Dark Mode 🌙"}
-        </button>
-      </header>
-
-      <main className="content">
-        <p>This is my first React app.</p>
-      </main>
-
-      <footer className="footer">© 2026 React App</footer>
-    </div>
+    <main className="app">
+      <h1>Interactive Profile Cards</h1>
+      <section className="grid">
+        {profiles.map((profile) => (
+          <ProfileCard key={profile.id} profile={profile} />
+        ))}
+      </section>
+    </main>
   );
 }
 
 export default App;
+
 
